@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package userpb;
+
+message User {
+    int32 ID = 1;
+    string Name = 2;
+}
+
+message GetRequest {
+    int32 ID = 1;
+}
+
+message GetResponse {
+    repeated User users = 1;
+}
+
+message GetUserFriendsResponse {
+    repeated User users  = 1;
+}
+
+
+service Users {
+    rpc Get(google.protobuf.Empty) returns (GetResponse) {}
+    rpc GetUserFriends(GetRequest) returns (GetUserFriendsResponse) {}
+}
